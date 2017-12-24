@@ -1,0 +1,332 @@
+
+
+\documentclass[conference]{IEEEtran}
+% If IEEEtran.cls has not been installed into the LaTeX system files,
+% manually specify the path to it like:
+%\documentclass[conference,compsoc]{/path/IEEEtras}
+
+
+
+
+
+% Some very useful LaTeX packages include:
+% (uncomment the ones you want to load)
+
+% *** CITATION PACKAGES ***
+%
+\ifCLASSOPTIONcompsoc
+  % IEEE Computer Society needs nocompress option
+  % requires cite.sty v4.0 or later (November 2003)
+  \usepackage[nocompress]{cite}
+\else
+  % normal IEEE
+  \usepackage{cite}
+\fi
+
+% \cite{} output to follow that of the IEEE. Loading the cite package will
+% result in citation numbers being automatically sorted and properly
+% "compressed/ranged". e.g., [1], [9], [2], [7], [5], [6] without using
+% cite.sty will become [1], [2], [5]--[7], [9] using cite.sty. cite.sty's
+% \cite will automatically add leading space, if needed. Use cite.sty's
+% noadjust option (cite.sty V3.8 and later) if you want to turn this off
+% such as if a citation ever needs to be enclosed in parenthesis.
+% cite.sty is already installed on most LaTeX systems. Be sure and use
+% version 5.0 (2009-03-20) and later if using hyperref.sty.
+% The latest version can be obtained at:
+% http://www.ctan.org/pkg/cite
+% The documentation is contained in the cite.sty file itself.
+%
+% Note that some packages require special options to format as the Computer
+% Society requires. In particular, Computer Society  papers do not use
+% compressed citation ranges as is done in typical IEEE papers
+% (e.g., [1]-[4]). Instead, they list every citation separately in order
+% (e.g., [1], [2], [3], [4]). To get the latter we need to load the cite
+% package with the nocompress option which is supported by cite.sty v4.0
+% and later.
+
+
+
+
+
+% *** GRAPHICS RELATED PACKAGES ***
+\usepackage[pdftex]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../pdf/}{../jpeg/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  % \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
+
+
+
+
+
+
+% *** MATH PACKAGES ***
+%
+\usepackage{amsmath}
+% A popular package from the American Mathematical Society that provides
+% many useful and powerful commands for dealing with mathematics.
+%
+% Note that the amsmath package sets \interdisplaylinepenalty to 10000
+% thus preventing page breaks from occurring within multiline equations. Use:
+%\interdisplaylinepenalty=2500
+% after loading amsmath to restore such page breaks as IEEEtran.cls normally
+% does. amsmath.sty is already installed on most LaTeX systems. The latest
+% version and documentation can be obtained at:
+% http://www.ctan.org/pkg/amsmath
+
+
+
+
+
+% *** SPECIALIZED LIST PACKAGES ***
+%
+\usepackage{algorithmic}
+% algorithmic.sty was written by Peter Williams and Rogerio Brito.
+% This package provides an algorithmic environment fo describing algorithms.
+% You can use the algorithmic environment in-text or within a figure
+% environment to provide for a floating algorithm. Do NOT use the algorithm
+% floating environment provided by algorithm.sty (by the same authors) or
+% algorithm2e.sty (by Christophe Fiorio) as the IEEE does not use dedicated
+% algorithm float types and packages that provide these will not provide
+% correct IEEE style captions. The latest version and documentation of
+% algorithmic.sty can be obtained at:
+% http://www.ctan.org/pkg/algorithms
+% Also of interest may be the (relatively newer and more customizable)
+% algorithmicx.sty package by Szasz Janos:
+% http://www.ctan.org/pkg/algorithmicx
+
+
+
+
+% *** ALIGNMENT PACKAGES ***
+%
+\usepackage{array}
+% Frank Mittelbach's and David Carlisle's array.sty patches and improves
+% the standard LaTeX2e array and tabular environments to provide better
+% appearance and additional user controls. As the default LaTeX2e table
+% generation code is lacking to the point of almost being broken with
+% respect to the quality of the end results, all users are strongly
+% advised to use an enhanced (at the very least that provided by array.sty)
+% set of table tools. array.sty is already installed on most systems. The
+% latest version and documentation can be obtained at:
+% http://www.ctan.org/pkg/array
+
+
+% IEEEtran contains the IEEEeqnarray family of commands that can be used to
+% generate multiline equations as well as matrices, tables, etc., of high
+% quality.
+
+
+
+
+% *** SUBFIGURE PACKAGES ***
+\ifCLASSOPTIONcompsoc
+  \usepackage[caption=false,font=footnotesize,labelfont=sf,textfont=sf]{subfig}
+\else
+  \usepackage[caption=false,font=footnotesize]{subfig}
+\fi
+% subfig.sty, written by Steven Douglas Cochran, is the modern replacement
+% for subfigure.sty, the latter of which is no longer maintained and is
+% incompatible with some LaTeX packages including fixltx2e. However,
+% subfig.sty requires and automatically loads Axel Sommerfeldt's caption.sty
+% which will override IEEEtran.cls' handling of captions and this will result
+% in non-IEEE style figure/table captions. To prevent this problem, be sure
+% and invoke subfig.sty's "caption=false" package option (available since
+% subfig.sty version 1.3, 2005/06/28) as this is will preserve IEEEtran.cls
+% handling of captions.
+% Note that the Computer Society format requires a sans serif font rather
+% than the serif font used in traditional IEEE formatting and thus the need
+% to invoke different subfig.sty package options depending on whether
+% compsoc mode has been enabled.
+%
+% The latest version and documentation of subfig.sty can be obtained at:
+% http://www.ctan.org/pkg/subfig
+
+
+
+
+% *** FLOAT PACKAGES ***
+%
+%\usepackage{fixltx2e}
+% fixltx2e, the successor to the earlier fix2col.sty, was written by
+% Frank Mittelbach and David Carlisle. This package corrects a few problems
+% in the LaTeX2e kernel, the most notable of which is that in current
+% LaTeX2e releases, the ordering of single and double column floats is not
+% guaranteed to be preserved. Thus, an unpatched LaTeX2e can allow a
+% single column figure to be placed prior to an earlier double column
+% figure.
+% Be aware that LaTeX2e kernels dated 2015 and later have fixltx2e.sty's
+% corrections already built into the system in which case a warning will
+% be issued if an attempt is made to load fixltx2e.sty as it is no longer
+% needed.
+% The latest version and documentation can be found at:
+% http://www.ctan.org/pkg/fixltx2e
+
+
+%\usepackage{stfloats}
+% stfloats.sty was written by Sigitas Tolusis. This package gives LaTeX2e
+% the ability to do double column floats at the bottom of the page as well
+% as the top. (e.g., "\begin{figure*}[!b]" is not normally possible in
+% LaTeX2e). It also provides a command:
+%\fnbelowfloat
+% to enable the placement of footnotes below bottom floats (the standard
+% LaTeX2e kernel puts them above bottom floats). This is an invasive package
+% which rewrites many portions of the LaTeX2e float routines. It may not work
+% with other packages that modify the LaTeX2e float routines. The latest
+% version and documentation can be obtained at:
+% http://www.ctan.org/pkg/stfloats
+% Do not use the stfloats baselinefloat ability as the IEEE does not allow
+% \baselineskip to stretch. Authors submitting work to the IEEE should note
+% that the IEEE rarely uses double column equations and that authors should try
+% to avoid such use. Do not be tempted to use the cuted.sty or midfloat.sty
+% packages (also by Sigitas Tolusis) as the IEEE does not format its papers in
+% such ways.
+% Do not attempt to use stfloats with fixltx2e as they are incompatible.
+% Instead, use Morten Hogholm'a dblfloatfix which combines the features
+% of both fixltx2e and stfloats:
+%
+% \usepackage{dblfloatfix}
+% The latest version can be found at:
+% http://www.ctan.org/pkg/dblfloatfix
+
+
+
+\usepackage{float}
+% *** PDF, URL AND HYPERLINK PACKAGES ***
+%
+\usepackage{url}
+% url.sty was written by Donald Arseneau. It provides better support for
+% handling and breaking URLs. url.sty is already installed on most LaTeX
+% systems. The latest version and documentation can be obtained at:
+% http://www.ctan.org/pkg/url
+% Basically, \url{my_url_here}.
+
+\usepackage[utf8]{inputenc}
+\usepackage[compact]{titlesec}
+\titlespacing{\section}{1pt}{*1}{*1}
+\titlespacing{\subsection}{0pt}{*0}{*0}
+\titlespacing{\subsubsection}{0pt}{*0}{*0}
+\raggedbottom
+
+% *** Do not adjust lengths that control margins, column widths, etc. ***
+% *** Do not use packages that alter fonts (such as pslatex).         ***
+% There should be no need to do such things with IEEEtran.cls V1.6 and later.
+% (Unless specifically asked to do so by the journal or conference you plan
+% to submit to, of course. )
+
+
+% correct bad hyphenation here
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+
+\begin{document}
+
+% title page
+\title{ Performance Measuring and Code Profiling of Matrix Multiplication}
+
+
+% author names and affiliations
+\author{\IEEEauthorblockN{Jose Silva}
+\IEEEauthorblockA{University of Minho\\ Braga, Portugal\\Email: a74576@alunos.uminho.pt}
+\and
+\IEEEauthorblockN{Bruno Ferreira}
+\IEEEauthorblockA{University of Minho\\ Braga, Portugal\\Email: a74155@alunos.uminho.pt}}
+
+
+% make the title area
+\maketitle
+
+
+% As a general rule, do not put math, special symbols or citations in abstract
+\begin{abstract}
+
+Several known computational tasks are the core of many numerical algorithms, being essential to get the maximum performance in its execution. Nowadays we can see computing systems evolve towards multi-core and many-core machines revealing a new paradigm that has not yet received proper attention, leading to a failure to take advantage of all the available hardware. 
+The aim of this project is to use matrix multiplication as an example algorithm to show how several changes can be made to improve the performance on the studied platform, the University of Minho cluster SeARCH, specifically node 662. For such changes to be made (i) a fully characterization of the hardware available and it's limitations is needed, (ii) a study on the metrics used to measure performance followed by (iii) the code profiling and performance analyses on the different versions with discussion of the results obtained ending up with (iv) a brief conclusion on the work done.
+\end{abstract}
+
+
+% For peer review papers, you can put extra information on the cover
+% page as needed:
+% \ifCLASSOPTIONpeerreview
+% \begin{center} \bfseries EDICS Category: 3-BBND \end{center}
+% \fi
+%
+% For peerreview papers, this IEEEtran command inserts a page break and
+% creates the second title. It will be ignored for other modes.
+\IEEEpeerreviewmaketitle
+
+
+
+\section{Introduction}
+
+Researchers try to model and simulate real-life problems computationally, and in most cases such problems require a high amount of resources. A performance engineer must be able to study a given problem and identify the changes he can perform in order to obtain a better use of resources on the work platform at his disposal. 
+This paper will focus on matrix multiplication, a central operation in many numerical algorithms and a potentially time consuming operation. To do so we need to identify the 
+We will start by study some implementations with changes in the index order to obtain different access patterns to memory, and apply changes such as transposing bad memory accessed matrices or blocking the matrix itself to a more efficient data re usage. 
+
+
+\section{Hardware Analysis and Specification}
+
+Before starting the analysis of the algorithm to be studied first it's necessary to obtain the maximum information about the hardware we are going to use during the course of this project so we can identify the potential performance bottlenecks on the computing platforms at our disposal. An easy-to-understand, visual performance model we present and will discuss later on it's the Roofline Model. 
+
+
+\begin{table}[H]
+\centering
+\caption{Team Main Laptop Specification}
+\label{hardware-spec}
+\begin{tabular}{|l|l|}
+\hline
+\multicolumn{2}{|c|}{\textbf{Processor}}                                                              \\ \hline
+\textbf{Manufacture}          & Intel Corporation                                                      \\ \hline
+\textbf{Model}               & Intel Core I7 - 4700HQ                                                 \\ \hline
+\textbf{Code Name}           & Haswell                                                                \\ \hline
+\textbf{\# Cores}            & 4                                                                      \\ \hline
+\textbf{\#Threads}           & 8                                                                      \\ \hline
+\textbf{Base Frequency}      & 2.4 GHz                                                                \\ \hline
+\textbf{Turbo Frequency}     & 3.4 GHz                                                                \\ \hline
+\textbf{Peak FP}             &                                                                        \\ \hline
+\multicolumn{2}{|c|}{\textbf{Memory}}                                                                 \\ \hline
+\textbf{Cache L1}            & \begin{tabular}[c]{@{}l@{}}32 KB Intructions\\ 32 KB Data\end{tabular} \\ \hline
+\textbf{Cache L2}            & 256 KB                                                                 \\ \hline
+\textbf{Cache L3}            & 6 MB                                                                   \\ \hline
+\textbf{Memory Bandwidth}    & 25.6 GB/s                                                              \\ \hline
+\textbf{Main Memory}         & \begin{tabular}[c]{@{}l@{}}8 GB DDR3 \\ 1600 MHz SDRAM\end{tabular}    \\ \hline
+\textbf{Main Memory Latency} &                                                                        \\ \hline
+\textbf{Memory Channels}     & 2                                                                      \\ \hline
+\end{tabular}
+\end{table}
+
+
+\section{Roofline Model}
+
+
+\section{Performance metrics used}
+
+
+\section{Matrix Dot Product Algorithm Analysis}
+
+
+
+
+\section{Conclusion}
+
+
+
+
+% conference papers do not normally have an appendix
+
+
+\begin{thebibliography}{1}
+
+\bibitem{IEEEhowto:kopka}
+H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
+  0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 1999.
+
+\end{thebibliography}
+
+
+
+
+\end{document}
+
+

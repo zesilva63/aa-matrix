@@ -1,7 +1,8 @@
-#include<stdio.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include <sys/time.h>
-#include <pthread.h>
+#include <papi.h>
+#include <omp.h>
 
 #define NUM_THREADS 24 // maximum number of threads to run
 #define TIME_RESOLUTION 1000000	// time measuring resolution (us)
