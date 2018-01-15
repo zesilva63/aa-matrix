@@ -2,30 +2,19 @@ SHELL = /bin/sh
 
 BIN_NAME = matrixMult
 
-
 CC = gcc
-CC2 = icpc
 
 PAPI = -lpapi
-LIB = -L/share/apps/papi/5.5.0/lib -I/share/apps/papi/5.5.0/include
 
-OPT = -O2
-OPT3 = -O3
-
-OMP = -fopenmp
-OMP2 = -openmp
-
-FLAGS = -Wall -Wextra -Wno-unused-parameter 
-REPORT = -vec-report3
-
-ASSEMBLY = -S
+FLAGS = -O2 -L/share/apps/papi/5.5.0/lib -I/share/apps/papi/5.5.0/include -Wall -Wextra -fopenmp -Wno-unused-parameter
+VEC = -O3 -L/share/apps/papi/5.5.0/lib -I/share/apps/papi/5.5.0/include -Wall -Wextra -fopenmp -Wno-unused-parameter -vec-report3
 
 compile: matrixMult.c
-	$(CC) -o $(BIN_NAME) matrixMult.c $(LIB) $(PAPI) $(OPT) $(OMP)
+	$(CC) -o $(BIN_NAME) matrixMult.c $(FLAGS) $(PAPI)
 
 
 assembly: matrixMult.c
-	$(CC) $(ASSEMBLY) matrixMult.c $(LIB) $(PAPI) $(OPT) $(OMP) -o $(BIN_NAME) 
+	$(CC) -S matrixMult.c -O2
 
 
 clean:
@@ -33,4 +22,4 @@ clean:
 
 
 vector: matrixMult.c
-	$(CC2) -o $(BIN_NAME) matrixMult.c $(ASSEMBLY) $(LIB) $(PAPI) $(OPT3) $(OMP2) $(REPORT)
+	$(CC) -o $(BIN_NAME) matrixMult.c $(VEC) $(PAPI)
