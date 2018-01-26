@@ -13,6 +13,11 @@ long long unsigned initial_time;
 struct timeval begin;
 double clearcache [30000000];
 
+float** a;
+float** b;
+float** c;
+	
+
 //int Events[NUM_EVENTS] = {PAPI_L2_DCR,PAPI_LD_INS};
 //int Events[NUM_EVENTS] = {PAPI_L3_DCR,PAPI_L2_DCR};
 //int Events[NUM_EVENTS] = {PAPI_L3_TCM,PAPI_L3_TCA};
@@ -260,10 +265,6 @@ float** emptyMatrix(int size) {
 int main (int argc, char *argv[]) {
 	
 	int repetitions, size, i;
-	
-	float** a;
-	float** b;
-	float** c;
 	
 	size = 2048;
 	repetitions = 5;
