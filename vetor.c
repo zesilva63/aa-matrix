@@ -88,16 +88,16 @@ void blocking_matmult(void)
                             aux[13] = a[i][kk+13] * b[kk+13][j];
                             aux[14] = a[i][kk+14] * b[kk+14][j];
                             aux[15] = a[i][kk+15] * b[kk+15][j];
-                            
+
                             res[i][j] += aux[0] + aux[1] + aux[2] + aux[3] + aux[4]+ aux[5]+ aux[6]+ aux[7] + aux[8] + aux[9]+ aux[10]+ aux[11]+ aux[12]+ aux[13] + aux[14]+ aux[15];
                     }
                 }
         }
     }
-}	
+}
 
 void sort_3(long long unsigned arr[3])
-{	
+{
 	long long unsigned swap;
 
 	if (arr[0]>arr[1])
@@ -124,17 +124,17 @@ int run_and_time()
 {
 	int i,flag=0;
 	long long unsigned best[3]={0},aux;
-	
+
 	for(i=0;i<8 && flag!=1;i++)
 	{
 		clearCache();
-		
+
 		start();
-		
+
 		blocking_matmult();
 
 		aux = stop();
-		
+
 		if(!validateMatrix()){
 			printf("Invalid Matrix!\n");
 			return -1;
@@ -150,10 +150,10 @@ int run_and_time()
 		}
 		if(i>=2)
 		{
-			sort_3(best);			
+			sort_3(best);
 
 			if((best[0] + best[0]*0.05) >= best[2] && (best[0] - best[0]*0.05) <= best[2])
-			{	
+			{
 				flag=1;
 			}
 			else
@@ -171,16 +171,16 @@ int run_and_time()
 		else
 			printf("K-Best time %llu* us\n", best[0]);
 	else
-	{	
+	{
 		long long unsigned avg=0;
 		for(i=0;i<3;i++)
 			avg+=best[i];
-		
+
 		if(avg/3>=1000000)
 			printf("K-Best time %llu *10^6 us\n", avg/3000000);
 		else if(avg/3>=1000)
 			printf("K-Best time %llu *10^3 us\n", avg/3000);
-		else 
+		else
 			printf("K-Best time %llu us\n", avg/3);
 	}
 	return 0;
@@ -189,7 +189,7 @@ int run_and_time()
 int main(int argc, char*argv[])
 {
 	srand(time(NULL));
-	
+
 	generate();
 
 	return (run_and_time());

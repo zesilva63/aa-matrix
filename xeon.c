@@ -32,18 +32,18 @@ void stop () {
 /*__declspec (target (mic:0)) */ float b[SIZE * SIZE] __attribute__((align(64)));
 /*__declspec (target (mic:0)) */ float c[SIZE * SIZE] __attribute__((align(64)));
 
-	
+
 
 int main (int argc, char *argv[]) {
-	
+
 	int i,j,k;
-	
+
 	for(i = 0; i < SIZE * SIZE; i++) {
 		a[i] = ((float) rand()) / ((float) RAND_MAX);
 		b[i] = 1;
 		c[i] = 0;
 	}
-		
+
 	start();
 
 	#pragma offload(mic:0)

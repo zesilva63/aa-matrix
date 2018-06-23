@@ -16,7 +16,7 @@ double clearcache [30000000];
 float** a;
 float** b;
 float** c;
-	
+
 
 //int Events[NUM_EVENTS] = {PAPI_L2_DCR,PAPI_LD_INS};
 //int Events[NUM_EVENTS] = {PAPI_L3_DCR,PAPI_L2_DCR};
@@ -52,7 +52,7 @@ void stop () {
 void prepareMatrices (float **a, float **b, float **c, int size) {
 	int i, j;
 
-	
+
 	b = (float**) malloc(sizeof(float *) * size);
 	c = (float**) malloc(sizeof(float *) * size);
 
@@ -166,7 +166,7 @@ void multiplicationBlockVec(float** __restrict__ A, float** __restrict__ B, floa
 	int i = 0, j = 0, k = 0, jj = 0, kk = 0;
 	float tmp;
 	int block_size = 32;
-	
+
 		for (jj = 0; jj < size; jj += block_size)
 		{
 			for (kk = 0; kk < size; kk += block_size)
@@ -226,46 +226,46 @@ void multiplicationBlockOMP(float** A, float** B, float** C, int size) {
 float** randomMatrix(int size) {
 	int i, j;
 	float** a = (float**) malloc(sizeof(float *) * size);
-	
+
 	for(i = 0; i < size; i++)
 		a[i] = (float*) malloc(size * sizeof(float));
-	
+
 	//srand(time(NULL));
 	for (i = 0; i < size; ++i)
 		for (j = 0; j < size; j++)
 			a[i][j] = ((float)rand() / (float)(RAND_MAX)) * 100 ;
-	
+
 	return a;
 }
 
 float** unitaryMatrix(int size) {
 	int i, j;
 	float** b = (float**) malloc(sizeof(float *) * size);
-	
+
 	for(i = 0; i < size; i++)
 		b[i] = (float*) malloc(size * sizeof(float));
-	
+
 	for (i = 0; i < size; ++i)
 		for (j = 0; j < size; j++)
 			b[i][j] = 1;
-	
+
 	return b;
 }
 
 float** emptyMatrix(int size) {
 	int i;
 	float** c = (float**) malloc(sizeof(float *) * size);
-	
+
 	for(i = 0; i < size; i++)
 		c[i] = (float*) calloc(size, sizeof(float));
-	
+
 	return c;
 }
 
 int main (int argc, char *argv[]) {
-	
+
 	int repetitions, size, i;
-	
+
 	size = 2048;
 	repetitions = 5;
 	a = randomMatrix(size);
@@ -275,7 +275,7 @@ int main (int argc, char *argv[]) {
 	PAPI_library_init(PAPI_VER_CURRENT);
 	PAPI_create_eventset(&EventSet);
 	PAPI_add_events(EventSet,Events,NUM_EVENTS);
-	
+
 	for (i = 0; i < repetitions; ++i) {
 		clearCache();
 		start();
@@ -283,9 +283,9 @@ int main (int argc, char *argv[]) {
 
 		multiplicationIJKTranspose(a, b, c, size);
 		multiplicationIJK(a, b, c, size);
-	
+
 		multiplicationBlockVec(a,b,c,size);
-	
+
 		PAPI_stop(EventSet,values);
 		printf("time: ");
 		stop();
@@ -295,8 +295,8 @@ int main (int argc, char *argv[]) {
 
 		double r = (double) values[0]/values[1];
 		printf("RAM / INS: %f\n",r);
-		
-		
+
+
 	}
 
 	return 1;
