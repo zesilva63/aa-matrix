@@ -30,6 +30,7 @@ long long values[NUM_EVENTS];
 
 
 void clearCache (void) {
+	int j;
 	int i;
 	for (i = 0; i < 30000000; ++i)
 		clearcache[i] = i;
